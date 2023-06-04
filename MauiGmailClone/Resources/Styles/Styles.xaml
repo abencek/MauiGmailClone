@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--Google Material Icons-->
+    <x:String x:Key="MenuOutlinedIcon">&#xe5d2;</x:String>
+    <x:String x:Key="MailOutlinedIcon">&#xe0be;</x:String>
+    <x:String x:Key="MailFilledIcon">&#xe0be;</x:String>
+    <x:String x:Key="VideoCamOutlinedIcon">&#xe04b;</x:String>
+    <x:String x:Key="VideoCamFilledIcon">&#xe04b;</x:String>
+    <x:String x:Key="EditOutlinedIcon">&#xe3c9;</x:String>
+    <x:String x:Key="InboxFilledIcon">&#xe156;</x:String>
+    <x:String x:Key="StarOutlinedIcon">&#xf06f;</x:String>
+    <x:String x:Key="SellOutlinedIcon">&#xf05b;</x:String>
+    <x:String x:Key="GroupOutlinedIcon">&#xe7ef;</x:String>
+    <x:String x:Key="ScheduleOutlinedIcon">&#xe8b5;</x:String>
+    <x:String x:Key="LabelOutlinedIcon">&#xe892;</x:String>
+    <x:String x:Key="SendOutlinedIcon">&#xe163;</x:String>
+    <x:String x:Key="ScheduleSendOutlinedIcon">&#xea0a;</x:String>
+    <x:String x:Key="ReportOutlinedIcon">&#xe160;</x:String>
+    <x:String x:Key="SettingsOutlinedIcon">&#xe8b8;</x:String>
+    <x:String x:Key="AccountCircleOutlinedIcon">&#xe853;</x:String>
+    <x:String x:Key="CalendarTodayOutlinedIcon">&#xe935;</x:String>
+    <x:String x:Key="HelpOutlinedIcon">&#xe8fd;</x:String>
+    <x:String x:Key="DeleteOutlinedIcon">&#xe872;</x:String>
+    <x:String x:Key="DescriptionOutlinedIcon">&#xe873;</x:String>
+    <x:String x:Key="ForwardToInboxOutlinedIcon">&#xf187;</x:String>
+    <x:String x:Key="TurnLeftOutlinedIcon">&#xeba6;</x:String>
+    <x:String x:Key="MoreVertOutlinedIcon">&#xe5d4;</x:String>
+    <x:String x:Key="ArrowBackOutlinedIcon">&#xe5c4;</x:String>
+    <x:String x:Key="ArchiveOutlinedIcon">&#xe149;</x:String>
+    <x:String x:Key="AttachmentOutlinedIcon">&#xe2bc;</x:String>
+    <x:String x:Key="BuildOutlinedIcon">&#xe869;</x:String>
+
+    <!--Base styles-->
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource GrayDarkColor}" />
+        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{StaticResource GrayLightColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+    
+    <Style TargetType="Entry">
+        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="{StaticResource GrayDarkColor}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource GrayDarkColor}" />
+    </Style>
+
+    <Style TargetType="Editor">
+        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="{StaticResource GrayDarkColor}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource GrayDarkColor}" />
+    </Style>
+  
+    <Style x:Key="MenuImageButton" TargetType="ImageButton">
+        <Setter Property="BackgroundColor"  Value="Transparent" />
+        <Setter Property="BorderColor"  Value="Transparent" />
+    </Style>
+
+    <Style TargetType="Shell" ApplyToDerivedTypes="True">
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource BackgroundLightColor}" />
+        <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource GrayDarkColor}" />
+        <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource GrayDarkColor}"/>
+    </Style>
+    
+</ResourceDictionary>

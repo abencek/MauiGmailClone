@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGmailClone.Views.MeetPage"
+             xmlns:viewmodel="clr-namespace:MauiGmailClone.ViewModels">
+    
+    <!--Page content-->
+    <Grid RowDefinitions="Auto,Auto,*" 
+          Margin="{OnPlatform Default=20, WinUI='20,0'}">
+        
+        <!--Top menu section-->
+        <Grid Grid.Row="0" 
+              ColumnDefinitions="40,*,40" 
+              ColumnSpacing="10">
+            <!--Flyout menu button-->
+            <ImageButton Grid.Column="0"  
+                         Aspect="AspectFit"
+                         BackgroundColor="Transparent"
+                         BorderColor="Transparent"
+                         VerticalOptions="Center"
+                         Command="{Binding OpenFlyoutCommand}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="{StaticResource MenuOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <!--Search bar-->
+            <Label Grid.Column="1"  
+                   Text="Meet"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+            <!--User avatar-->
+            <Border Grid.Column="2"
+                    WidthRequest="30"
+                    HeightRequest="30"
+                    StrokeShape="RoundRectangle 30">
+                <Image Source="avatar_user.png"
+                       Aspect="AspectFit" />
+            </Border>
+        </Grid>
+        
+        <!--Meet buttons-->
+        <Grid Grid.Row="1" 
+              ColumnDefinitions="*,*" 
+              Margin="{OnPlatform Default='0,30,0,0', WinUI='0,10,0,0'}">
+            <Button Grid.Column="0" 
+                    Text="New meeting" 
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Padding="35,10" 
+                    CornerRadius="20"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    TextColor="White"/>
+            <Button Grid.Column="1" 
+                    Text="Join with a code" 
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center"
+                    Padding="25,10" 
+                    CornerRadius="20" 
+                    BackgroundColor="White"
+                    TextColor="{StaticResource GrayDarkColor}"
+                    BorderWidth="1"
+                    BorderColor="{StaticResource GrayDarkColor}"/>
+        </Grid>
+        
+        <!--Main page content-->
+        <VerticalStackLayout Grid.Row="2" 
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             Margin="40"
+                             Spacing="6">
+            <!--Image-->
+            <Image Source="meet_get_link.png"
+                   WidthRequest="{OnPlatform Default='200', WinUI='150'}"
+                   Aspect="AspectFit"/>
+            <!--Text description-->
+            <Label Text="Get a link you can share" 
+                   HorizontalTextAlignment="Center"
+                   Margin="0,10,0,0"
+                   FontSize="{OnPlatform Default=20, WinUI=16}"/>
+            <Label HorizontalTextAlignment="Center">
+                <Label.Resources>
+                    <Style TargetType="Span">
+                        <Setter Property="FontSize" Value="{OnPlatform Default=16, WinUI=12}"/>
+                    </Style>
+                </Label.Resources>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Click"/>
+                        <Span Text=" New Meeting " FontAttributes="Bold"/>
+                        <Span Text="to get a link you can send to people you can meet with"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiGmailClone.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiGmailClone"
+    xmlns:model="clr-namespace:MauiGmailClone.Models"
+    xmlns:viewmodel="clr-namespace:MauiGmailClone.ViewModels"
+    xmlns:view="clr-namespace:MauiGmailClone.Views"
+    x:DataType="viewmodel:MainViewModel"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.NavBarIsVisible="False"
+    FlyoutIsPresented="{Binding IsFlyoutOpen}">
+
+    <!--Shell resources-->
+    <Shell.Resources>
+        <Style x:Key="FlyoutButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="TextColor" Value="{StaticResource GrayDarkColor}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderWidth" Value="0"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="ContentLayout" Value="Left, 10"/>
+        </Style>
+
+        <Style x:Key="FlyoutLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Margin" Value="10,8,10,0"/>
+        </Style>
+    </Shell.Resources>
+
+
+    <!--Flyout header content-->
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout Margin="10,10,10,0" 
+                             Spacing="10">
+            <Label Text="GMAIL" 
+                   FontSize="18" 
+                   TextColor="{StaticResource SecondaryColor}"/>
+            <Line BackgroundColor="{StaticResource GrayVeryLightColor}"/>
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+
+    <!--Flyout body content-->
+    <Shell.FlyoutContent>
+        <ScrollView Margin="5">
+            <VerticalStackLayout Spacing="1">
+                <!--Group 1 - Main groups-->
+                <Button Text="Primary"
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource InboxFilledIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GetEmailsCommand}"
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                <Button Text="Promotions"
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource SellOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GetEmailsCommand}"
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                <Button Text="Social" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource GroupOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GetEmailsCommand}"
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+
+                <!--Group 2 - Additional groups-->
+                <Label Text="All labels" 
+                       Style="{StaticResource FlyoutLabel}"/>
+                <Button Text="Starred" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource StarOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GetEmailsCommand}"
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                <Button Text="Snoozed" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource ScheduleOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GetEmailsCommand}"
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                <Button Text="Important" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource LabelOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GetEmailsCommand}"
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                <Button Text="Send" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource SendOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{x:Null}"/>
+                <Button Text="Scheduled" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource ScheduleSendOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GetEmailsCommand}"
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                <Button Text="Outbox" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource ForwardToInboxOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GetEmailsCommand}"
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                <Button Text="Drafts" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource DescriptionOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GetEmailsCommand}"
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"
+                        ContentLayout="{OnPlatform WinUI='Left, 14'}"/>
+                <Button Text="All mail" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource MailOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GetEmailsCommand}"
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                <Button Text="Spam" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource ReportOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GetEmailsCommand}"
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"
+                        ContentLayout="{OnPlatform WinUI='Left, 14'}"/>
+                <Button Text="Trash" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource DeleteOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GetEmailsCommand}"
+                        CommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"
+                        ContentLayout="{OnPlatform WinUI='Left, 14'}"/>
+
+                <!--Group 3 - Google applications-->
+                <Label Text="Google apps" 
+                       Style="{StaticResource FlyoutLabel}" />
+                <Button Text="Calendar" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource CalendarTodayOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GoToPageCommand}"
+                        CommandParameter="TODOPage"/>
+                <Button Text="Contacts" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource AccountCircleOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GoToPageCommand}"
+                        CommandParameter="TODOPage"/>
+
+                <!--Dividing line-->
+                <Line BackgroundColor="{StaticResource GrayVeryLightColor}"
+                      Margin="0,0,10,0"/>
+
+                <!--Group 4 - Settings and feedback-->
+                <Button Text="Settings" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource SettingsOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GoToPageCommand}"
+                        CommandParameter="TODOPage"/>
+                <Button Text="Help and feedback" 
+                        Style="{StaticResource FlyoutButton}"
+                        ImageSource="{FontImageSource Glyph={StaticResource HelpOutlinedIcon}, FontFamily=MIOutlined, Size=18, Color={StaticResource GrayDarkColor} }"
+                        Command="{Binding GoToPageCommand}"
+                        CommandParameter="TODOPage"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Shell.FlyoutContent>
+
+    <!--Tab bar items-->
+    <TabBar>
+        <Tab Title="{OnPlatform WinUI=Mail}"
+             Route="tabmail">
+            <Tab.Icon>
+                <OnPlatform x:TypeArguments="FontImageSource">
+                    <On Platform="WinUI" Value="{x:Null}"/>
+                    <On Platform="Android,iOS" Value="{FontImageSource Glyph={StaticResource MailOutlinedIcon}, FontFamily=MIOutlined, Color={StaticResource GrayDarkColor}}"/>
+                </OnPlatform>
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate view:MainPage}" />
+        </Tab>
+        <Tab Title="{OnPlatform WinUI=Meet}"
+             Route="tabmeet">
+            <Tab.Icon>
+                <OnPlatform x:TypeArguments="FontImageSource">
+                    <On Platform="WinUI" Value="{x:Null}"/>
+                    <On Platform="Android,iOS" Value="{FontImageSource Glyph={StaticResource VideoCamOutlinedIcon}, FontFamily=MIOutlined, Color={StaticResource GrayDarkColor}}"/>
+                </OnPlatform>
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate view:MeetPage}" />
+        </Tab>
+    </TabBar>
+</Shell>

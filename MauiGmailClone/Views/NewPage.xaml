@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGmailClone.Views.NewPage"
+             xmlns:viewmodel="clr-namespace:MauiGmailClone.ViewModels"
+             x:DataType="{x:Type viewmodel:NewViewModel}">
+
+    <!--Page resources-->
+    <ContentPage.Resources>
+        <Style x:Key="AddressEntryLabel"  TargetType="Label">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="{OnPlatform Default='10,0,0,0', Android='18,0,0,0'}"/>
+        </Style>
+
+        <Style x:Key="AddressEntry" TargetType="Entry">
+            <Setter Property="FontFamily" Value="OpenSansRegular"/>
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Margin" Value="0,0,15,0"/>
+        </Style>
+
+        <Style x:Key="DeviderLine" TargetType="Line">
+            <Setter Property="BackgroundColor" Value="{StaticResource GrayVeryLightColor}"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <!--Page content-->
+    <Grid RowDefinitions="50,Auto,Auto,Auto,Auto,Auto,Auto,*"
+          ColumnDefinitions="50,*"
+          RowSpacing="10"
+          Margin="{OnPlatform Default='10,0',Android='0,10'}">
+        
+        <!--Top menu section-->
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+              ColumnDefinitions="20,*,20,20,20,20" 
+              RowDefinitions="20"
+              ColumnSpacing="20"
+              Margin="10,15">
+            <!--Return button-->
+            <ImageButton Grid.Column="0" 
+                         Style="{StaticResource MenuImageButton}"
+                         Command="{Binding GoToPreviousPageCommand}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="{StaticResource ArrowBackOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <!--Title-->
+            <Label Grid.Column="1" 
+                   Text="Compose" 
+                   FontSize="16" 
+                   VerticalOptions="Center"/>
+            <!--Add attachment button-->
+            <ImageButton Grid.Column="3" 
+                         Style="{StaticResource MenuImageButton}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="{StaticResource AttachmentOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <!--Send email button-->
+            <ImageButton Grid.Column="4" 
+                         Style="{StaticResource MenuImageButton}"
+                         Command="{Binding SendEmailCommand}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="{StaticResource SendOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <!--More options button-->
+            <ImageButton Grid.Column="5" 
+                         Style="{StaticResource MenuImageButton}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="{StaticResource MoreVertOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>
+
+        <!--Main content-->
+        <!--Address From-->
+        <Label Grid.Row="1" 
+               Grid.Column="0" 
+               Style="{StaticResource AddressEntryLabel}"
+               Text="From"/>
+        <Entry Grid.Row="1"
+               Grid.Column="1" 
+               Style="{StaticResource AddressEntry}"/>
+        <Line Grid.Row="2"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Style="{StaticResource DeviderLine}"/>
+        <!--Address To-->
+        <Label Grid.Row="3" 
+               Grid.Column="0" 
+               Style="{StaticResource AddressEntryLabel}"
+               Text="To"/>
+        <Entry Grid.Row="3"
+               Grid.Column="1" 
+               Style="{StaticResource AddressEntry}"/>
+        <Line Grid.Row="4"
+              Grid.Column="0"
+              Grid.ColumnSpan="2" 
+              Style="{StaticResource DeviderLine}"/>
+        <!--Subject text-->
+        <Entry Grid.Row="5" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="2"
+               Margin="{OnPlatform Default=0,Android='15,0,0,0'}"
+               Placeholder="Subject"/>
+        <Line Grid.Row="6"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Style="{StaticResource DeviderLine}"/>
+        <!--Body text-->
+        <Editor Grid.Row="7" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="2"
+               Margin="{OnPlatform Default=0,Android='15,0,0,0'}"
+               Placeholder="Compose email"/>
+    </Grid>
+</ContentPage>

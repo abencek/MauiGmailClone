@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGmailClone.Views.DetailsPage"
+             xmlns:model="clr-namespace:MauiGmailClone.Models"
+             xmlns:viewmodel="clr-namespace:MauiGmailClone.ViewModels"
+             xmlns:conv="clr-namespace:MauiGmailClone.Converters"
+             x:DataType="{x:Type viewmodel:DetailsViewModel}">
+
+    <!--Page resources-->
+    <ContentPage.Resources>
+        <Style x:Key="BadgeBorder" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="{StaticResource GrayVeryLightColor}" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 5"/>
+        </Style>
+
+        <Style x:Key="BadgeText" TargetType="Label">
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="4,0" />
+        </Style>
+
+        <Style x:Key="SubjectText" TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="LineBreakMode" Value="WordWrap"/>
+        </Style>
+
+        <Style x:Key="EmailAddress" TargetType="Label">
+            <Setter Property="FontSize" Value="11" />
+        </Style>
+    </ContentPage.Resources>
+    
+    <!--Page content-->
+    <VerticalStackLayout Spacing="10" 
+                         Margin="{OnPlatform Default=20, WinUI='20,10'}">
+        
+        <!--Top menu section-->
+        <Grid ColumnDefinitions="20,*,20,20,20,20" 
+              RowDefinitions="20"
+              ColumnSpacing="10" 
+              Padding="0">
+            <!--Return button-->
+            <ImageButton Grid.Column="0" 
+                         Style="{StaticResource MenuImageButton}"
+                         Command="{Binding GoToPreviousPageCommand}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="{StaticResource ArrowBackOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <!--Archive button-->
+            <ImageButton Grid.Column="2" 
+                         Style="{StaticResource MenuImageButton}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="{StaticResource ArchiveOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <!--Delete button-->
+            <ImageButton Grid.Column="3" 
+                         Style="{StaticResource MenuImageButton}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="{StaticResource DeleteOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <!--Mark unread button-->
+            <ImageButton Grid.Column="4" 
+                         Style="{StaticResource MenuImageButton}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="{StaticResource MailOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <!--More options button-->
+            <ImageButton Grid.Column="5" 
+                         Style="{StaticResource MenuImageButton}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="{StaticResource MoreVertOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>
+        
+        <!--Email title section-->
+        <Grid ColumnDefinitions="*,16" 
+              Margin="0,5">
+            <VerticalStackLayout Grid.Column="0">
+                <Label Margin="0,0,0,5"
+                       Style="{StaticResource SubjectText}"
+                       Text="{Binding Email.Subject}"/>
+                <Border HorizontalOptions="Start" 
+                        Style="{StaticResource BadgeBorder}">
+                    <Label Text="Inbox" Style="{StaticResource BadgeText}"/>
+                </Border>
+            </VerticalStackLayout>
+            <Image Grid.Column="1"
+                   WidthRequest="16"
+                   HeightRequest="16"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <Image.Source>
+                    <FontImageSource Glyph="{StaticResource StarOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </Image.Source>
+            </Image>
+        </Grid>
+        
+        <!--Email address section-->
+        <Grid ColumnDefinitions="30,*,20,20"
+              ColumnSpacing="10"         
+              Padding="0,5">
+            <Image Grid.Column="0"
+                   WidthRequest="30"
+                   Aspect="AspectFit"
+                   Source="{Binding Email.AvatarType, Converter={conv:AvatarTypeToImageConverter}}" />
+            <VerticalStackLayout Grid.Column="1" 
+                                 Margin="10,0">
+                <Label Style="{StaticResource EmailAddress}" 
+                       Text="{Binding Email.EmailAddress}"/>
+                <Label Style="{StaticResource EmailAddress}" 
+                       Text="to me"/>
+            </VerticalStackLayout>
+            <ImageButton Grid.Column="2" 
+                         Style="{StaticResource MenuImageButton}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="{StaticResource TurnLeftOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <ImageButton Grid.Column="3" 
+                         Style="{StaticResource MenuImageButton}">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="{StaticResource MoreVertOutlinedIcon}" 
+                                     FontFamily="MIOutlined" 
+                                     Size="20"
+                                     Color="{StaticResource GrayDarkColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>
+        
+        <!--Email body section-->
+        <Label Text="{Binding Email.Content}"
+               LineBreakMode="WordWrap"
+               Margin="0,5"/>
+    </VerticalStackLayout>
+</ContentPage>
